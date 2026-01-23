@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Sansita";
+    src: url("../src/assets/fonts/Sansita-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "BebasNeue";
+    src: url("../src/assets/fonts/BebasNeue-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../src/assets/fonts/Poppins-Regular.ttf");
+}
+
+
+@import 'tailwindcss';
+
+html ,body {
+    background-color: black;
+    font-family: "Poppins";
+    scroll-behavior: smooth;
+}
+
+.Name {
+    font-family: "BebasNeue";
+    letter-spacing: 1px;
+}
+
+[data-aos="fade-left"] {
+    opacity: 0 !important;
+    transform: translateX(25vw) !important;
+    will-change: transform, opacity;
+
+}
+
+[data-aos="fade-left"].aos-animate {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    [data-aos="fade-left"],
+    [data-aos="fade-left"].aos-animate {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+
+
+::-webkit-scrollbar{
+    scrollbar-width: none;
+}
