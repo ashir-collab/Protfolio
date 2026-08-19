@@ -63,7 +63,7 @@ const Project = () => {
             "A faith-focused application designed to support daily religious practice and spiritual habit tracking. Built with an emphasis on calm, distraction-free UI and reliable, accessible functionality."
           }
           height={"h-auto"}
-          margin={"-mt-48"}
+          margin={"-mt-48 max-md:-mt-32"}
           link={qalbSyncLink}
         />
 
@@ -84,7 +84,7 @@ const Project = () => {
             "A Spotify-style music streaming interface focused on modern UI patterns and seamless navigation. Features dynamic layouts, interactive components, and a scalable design structure that reflects real product-level frontend development."
           }
           height={"h-auto"}
-          margin={"-mt-48"}
+          margin={"-mt-48 max-md:-mt-32"}
         />
 
         {/* <ProjectCard
