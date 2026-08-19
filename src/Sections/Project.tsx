@@ -12,6 +12,7 @@ const Project = () => {
   const fitlabLink = import.meta.env.VITE_FITLAB_LINK;
   const qalbSyncLink = import.meta.env.VITE_QALB_SYNC_LINK;
   const computerizedAiLink = import.meta.env.VITE_COMPUTERIZED_AI_LINK;
+  const taskMasterLink = import.meta.env.VITE_TASK_MASTER_LINK;
   return (
     <div className="ProjectContainer mt-40 w-11/12 mx-auto text-white">
       <div className="grid grid-cols-2 gap-6 items-start">
@@ -75,6 +76,7 @@ const Project = () => {
           }
           height={"h-auto"}
           margin={"mt-0"}
+          link={taskMasterLink}
         />
 
         <ProjectCard
