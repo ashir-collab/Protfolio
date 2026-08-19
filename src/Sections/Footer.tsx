@@ -1,4 +1,9 @@
-import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaFileDownload,
+} from "react-icons/fa";
+import resume  from "../assets/resume/Resume.pdf";
 
 const Footer = () => {
   const scrollToSection = (id: string) => {
@@ -27,18 +32,21 @@ const Footer = () => {
             {/* Socials */}
             <div className="flex items-center gap-4 mt-2">
               <a
-                href="#"
-                aria-label="Twitter"
+                href={resume}
+                title="Download Resume"
+                download="Muhammad-Ashir-Resume.pdf"
+                aria-label="Download Resume"
                 className="w-10 h-10 flex items-center justify-center rounded-full
                                 bg-white/5 border border-white/10
                                 hover:bg-[#00FFFF]/10 hover:border-[#00FFFF]
                                 hover:text-[#00FFFF] transition-all duration-300"
               >
-                <FaTwitter size={17} />
+                <FaFileDownload size={17} />
               </a>
 
               <a
                 href={linkedinLink}
+                title="Open LinkedIn Profile"
                 aria-label="LinkedIn"
                 className="w-10 h-10 flex items-center justify-center rounded-full
                                 bg-white/5 border border-white/10
@@ -50,6 +58,7 @@ const Footer = () => {
 
               <a
                 href={githubLink}
+                title="Open GitHub Profile"
                 aria-label="GitHub"
                 className="w-10 h-10 flex items-center justify-center rounded-full
                                 bg-white/5 border border-white/10
@@ -102,8 +111,6 @@ const Footer = () => {
               >
                 Contact
               </p>
-
-              
             </div>
           </div>
 
