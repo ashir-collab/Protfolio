@@ -3,7 +3,7 @@ export class ChatbotApiService {
     message: string,
     onChunk: (chunk: string) => void,
   ): Promise<void> {
-    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/chat`, {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
