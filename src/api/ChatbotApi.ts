@@ -1,17 +1,38 @@
-import api from "./axios";
-
-interface ChatResponse {
-  reply: string; // adjust to match your DTO's actual response field
-}
-
 export class ChatbotApiService {
-  static async sendMessage(message: string): Promise<string> {
-    try {
-      const { data } = await api.post<ChatResponse>("/chat", { message });
-      return data.reply;
-    } catch (error) {
-      console.error("An error occurred:", error);
-      throw error;
+  static async sendMessage(
+    message: string,
+    onChunk: (chunk: string) => void
+  ): Promise<void> {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/chat`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to send message");
+    }
+
+    if (!response.body) {
+      throw new Error("Streaming is not supported");
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+
+      onChunk(chunk);
     }
   }
 }
