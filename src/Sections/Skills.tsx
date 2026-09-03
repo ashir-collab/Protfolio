@@ -44,7 +44,7 @@ const Skills = () => {
 
   return (
     <>
-      <div className="SkillContainer grid grid-cols-2 max-md:grid-cols-1 gap-10 text-gray-500 mt-40 max-md:mt-28 w-10/11 mx-auto">
+      <div className="SkillContainer grid grid-cols-2 max-md:grid-cols-1 gap-10 text-gray-500 mt-40 max-md:mt-82 w-10/11 mx-auto">
         <div className="skill flex flex-col gap-6 w-[90%] max-md:w-full">
           <div className="text-5xl max-md:text-4xl max-sm:text-3xl font-extrabold text-white">
             Skillset
