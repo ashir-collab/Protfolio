@@ -1,12 +1,37 @@
-import { FaHtml5 } from "react-icons/fa";
-import { RiTailwindCssFill } from "react-icons/ri";
+import { FaHtml5, FaReact, FaGitAlt, FaFigma, FaDocker } from "react-icons/fa";
+import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io";
-import { FaReact } from "react-icons/fa";
+import {
+  SiNestjs,
+  SiTypescript,
+  SiMongodb,
+  SiThreedotjs,
+  SiRedux,
+  SiGraphql,
+  SiVercel,
+} from "react-icons/si";
+import { BiLogoPostgresql } from "react-icons/bi";
 import AOS from "aos";
 import { useEffect } from "react";
-import { RiNextjsFill } from "react-icons/ri";
-import { SiNestjs } from "react-icons/si";
-import { BiLogoPostgresql } from "react-icons/bi";
+
+const skills = [
+  { name: "HTML5", icon: FaHtml5, color: "orange" },
+  { name: "Tailwind CSS", icon: RiTailwindCssFill, color: "#38BDF8" },
+  { name: "JavaScript", icon: IoLogoJavascript, color: "#F7DF1E" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "React", icon: FaReact, color: "#61DAFB" },
+  { name: "Next.js", icon: RiNextjsFill, color: "#FFFFFF" },
+  { name: "Redux", icon: SiRedux, color: "#764ABC" },
+  { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
+  { name: "GraphQL", icon: SiGraphql, color: "#E10098" },
+  { name: "Three.js", icon: SiThreedotjs, color: "#FFFFFF" },
+  { name: "PostgreSQL", icon: BiLogoPostgresql, color: "#336791" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "Docker", icon: FaDocker, color: "#2496ED" },
+  { name: "Figma", icon: FaFigma, color: "#F24E1E" },
+  { name: "Vercel", icon: SiVercel, color: "#FFFFFF" },
+  { name: "Git", icon: FaGitAlt, color: "#F05032" },
+];
 
 const Skills = () => {
   useEffect(() => {
@@ -19,8 +44,8 @@ const Skills = () => {
 
   return (
     <>
-      <div className="SkillContainer  grid grid-cols-2 gap-1  text-gray-500 mt-40 max-md:mt-82 w-10/11 mx-auto">
-        <div className="skill flex flex-col gap-6 w-[90%]">
+      <div className="SkillContainer grid grid-cols-2 max-md:grid-cols-1 gap-10 text-gray-500 mt-40 max-md:mt-28 w-10/11 mx-auto">
+        <div className="skill flex flex-col gap-6 w-[90%] max-md:w-full">
           <div className="text-5xl max-md:text-4xl max-sm:text-3xl font-extrabold text-white">
             Skillset
           </div>
@@ -30,143 +55,38 @@ const Skills = () => {
             your needs are, I can pretty much take on any challenge.
           </div>
         </div>
-        <div className="languages m-auto grid grid-cols-2 max-sm:grid-cols-1  gap-30 max-lg:gap-20 max-xl:gap-30 max-md:mr-2 w-full">
-          <div
-            className="Html  flex flex-col gap-3 max-md:w-46.25 max-lg:w-48 max-xl:w-57 w-62.5"
-            data-aos="zoom-out"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
-          >
-            <div className="logo">
-              <FaHtml5
-                size={45}
-                color="orange"
-                className="hover:transform hover:scale-110 transition-all duration-300"
+
+        <div className="languages m-auto grid grid-cols-4 max-lg:grid-cols-3 max-sm:grid-cols-2 gap-x-12 gap-y-12 max-lg:gap-x-8 max-lg:gap-y-10 max-md:mr-2 w-full place-items-center">
+          {skills.map(({ name, icon: Icon, color }, i) => (
+            <div
+              key={name}
+              className="group relative flex flex-col items-center gap-3"
+              data-aos="zoom-out"
+              data-aos-duration="800"
+              data-aos-delay={(i % 4) * 100}
+              data-aos-easing="ease-out-cubic"
+            >
+              {/* glow blob behind icon */}
+              <div
+                className="absolute top-0 w-16 h-16 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"
+                style={{ backgroundColor: color } as React.CSSProperties}
               />
-            </div>
-            <div className="desc max-md:text-sm max-sm:text-[10px] md:text-sm">
-              Proficient in semantic HTML5, creating scalable page structures
-              that integrate smoothly with CSS, JavaScript, and modern
-              frameworks while maintaining accessibility standards.
-            </div>
-          </div>
-          <div
-            className="CSS  flex flex-col gap-3 max-md:w-46.25 max-lg:w-48 max-xl:w-57 w-62.5"
-            data-aos="zoom-out"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
-          >
-            <div className="logo">
-              <RiTailwindCssFill
-                size={45}
-                color="blue"
-                className="hover:transform hover:scale-110 transition-all duration-300"
+
+              <Icon
+                size={48}
+                color={color}
+                className="relative z-10 transition-all duration-300 ease-out
+                           group-hover:scale-125 group-hover:-translate-y-1
+                           drop-shadow-[0_0_0_transparent]
+                           group-hover:drop-shadow-[0_0_14px_var(--tw-shadow-color)]"
+                style={{ "--tw-shadow-color": color } as React.CSSProperties}
               />
+
+              <span className="relative z-10 text-xs max-sm:text-[10px] font-semibold text-gray-500 group-hover:text-white transition-colors duration-300">
+                {name}
+              </span>
             </div>
-            <div className="desc max-md:text-sm max-sm:text-[10px] md:text-sm">
-              Utility-first styling for building responsive, consistent
-              interfaces quickly while maintaining clean design systems.
-            </div>
-          </div>
-          <div
-            className="JavaScript flex flex-col gap-3 max-md:w-46.25 max-lg:w-48 max-xl:w-57 w-62.5"
-            data-aos="zoom-out"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
-          >
-            <div className="logo">
-              <IoLogoJavascript
-                size={45}
-                color="yellow"
-                className="hover:transform hover:scale-110 transition-all duration-300"
-              />
-            </div>
-            <div className="desc max-md:text-sm max-sm:text-[10px] md:text-sm">
-              Interactive, efficient functionality focused on usability,
-              performance, and real-world problem solving.
-            </div>
-          </div>
-          <div
-            className="ReactJs flex flex-col gap-3 max-md:w-46.25 max-lg:w-48 max-xl:w-57 w-62.5"
-            data-aos="zoom-out"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
-          >
-            <div className="logo">
-              <FaReact
-                size={45}
-                color="aqua"
-                className="hover:transform hover:scale-110 transition-all duration-300"
-              />
-            </div>
-            <div className="desc max-md:text-sm max-sm:text-[10px] md:text-sm">
-              Component-based development for scalable, dynamic user interfaces
-              with a focus on state management and reusability.
-            </div>
-          </div>
-          <div
-            className="NextJs flex flex-col gap-3 max-md:w-46.25 max-lg:w-48 max-xl:w-57 w-62.5"
-            data-aos="zoom-out"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
-          >
-            <div className="logo">
-              <RiNextjsFill
-                size={45}
-                color="white"
-                className="hover:transform hover:scale-110 transition-all duration-300"
-              />
-            </div>
-            <div className="desc max-md:text-sm max-sm:text-[10px] md:text-sm">
-              Building fast, SEO-friendly web apps with server-side rendering
-              and the App Router. Combines React's component model with
-              optimized routing, image handling, and API routes for full-stack
-              development.
-            </div>
-          </div>
-          <div
-            className="NestJs flex flex-col gap-3 max-md:w-46.25 max-lg:w-48 max-xl:w-57 w-62.5"
-            data-aos="zoom-out"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
-          >
-            <div className="logo">
-              <SiNestjs
-                size={45}
-                color="#E0234E"
-                className="hover:transform hover:scale-110 transition-all duration-300"
-              />
-            </div>
-            <div className="desc max-md:text-sm max-sm:text-[10px] md:text-sm">
-              Architecting scalable backend APIs with a modular,
-              TypeScript-first framework.
-            </div>
-          </div>
-          <div
-            className="PostgreSQL flex flex-col gap-3 max-md:w-46.25 max-lg:w-48 max-xl:w-57 w-62.5"
-            data-aos="zoom-out"
-            data-aos-duration="800"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
-          >
-            <div className="logo">
-              <BiLogoPostgresql
-                size={45}
-                color="#336791"
-                className="hover:transform hover:scale-110 transition-all duration-300"
-              />
-            </div>
-            <div className="desc max-md:text-sm max-sm:text-[10px] md:text-sm">
-              Designing relational databases with complex queries and strong
-              data integrity.
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>
