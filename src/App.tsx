@@ -6,6 +6,7 @@ import Intro from "./Sections/Intro";
 import Project from "./Sections/Project";
 import Skills from "./Sections/Skills";
 import { Analytics } from "@vercel/analytics/react";
+import ChatBot from "./Sections/ChatBot";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
       </div>
       <div id="input">
         <Input />
+      </div>
+      <div>
+        <ChatBot />
       </div>
       <div>
         <Footer />

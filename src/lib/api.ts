@@ -7,10 +7,6 @@ export const api = axios.create({
     headers: { "Content-Type": "application/json" },
 })
 
-/**
- * Turns anything thrown by axios into a message that is safe to show a visitor.
- * Nest's ValidationPipe replies with `message: string | string[]`.
- */
 export function getApiErrorMessage(error: unknown): string {
     if (axios.isAxiosError(error)) {
         if (error.code === "ECONNABORTED") {
