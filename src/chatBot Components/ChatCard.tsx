@@ -15,7 +15,7 @@ interface ChatCardProps {
 
 const ChatCard = ({ onClose }: ChatCardProps) => {
   const [messages, setMessages] = useState<Message[]>([
-    { id: 1, text: "Hey! How can I help you today?", sender: "bot" },
+    { id: 1, text: "Hey! How can I help you?", sender: "bot" },
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -62,7 +62,7 @@ const ChatCard = ({ onClose }: ChatCardProps) => {
             className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm ${
+              className={`max-w-[75%] px-3 py-2 rounded-2xl text-xs ${
                 msg.sender === "user"
                   ? "bg-black text-white rounded-br-sm"
                   : "bg-gray-100 text-black rounded-bl-sm"
