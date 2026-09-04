@@ -49,7 +49,7 @@ const Experience = () => {
                         </div>
 
                         <div className="text-sm opacity-70 font-semibold">
-                            July 2024 – Present
+                            Nov 2025 – Present
                         </div>
 
                         <div className="FirmDesc font-semibold text-sm max-md:text-[10px]">
