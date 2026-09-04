@@ -32,7 +32,7 @@ const Intro = () => {
                 </div>
                 <div className="rightbox w-[71vw] max-md:h-105 flex flex-col bg-[#181823] ">
                     <Navbar />
-                    <div className="content flex flex-col items-start mt-28 ml-6 max-md:ml-0 max-md:w-[120%] p-10 gap-3 max-lg:mt-15 text-white " data-aos="fade-left"
+                    <div className="content flex flex-col items-start mt-28 ml-6 max-md:ml-0 max-md:w-[120%] p-6 md:p-10 gap-0 md:gap-3 max-lg:mt-15 text-white " data-aos="fade-left"
                         data-aos-duration="600"
                         data-aos-delay="200"
                         data-aos-easing="ease-out-cubic">

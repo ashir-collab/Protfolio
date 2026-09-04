@@ -44,16 +44,8 @@ const ChatCard = ({ onClose }: ChatCardProps) => {
 
     const botId = Date.now() + 1;
 
-    // Add user's message and an empty bot message immediately
-    setMessages((prev) => [
-      ...prev,
-      userMsg,
-      {
-        id: botId,
-        text: "",
-        sender: "bot",
-      },
-    ]);
+    // Only add the user's message
+    setMessages((prev) => [...prev, userMsg]);
 
     setIsTyping(true);
     setHasStartedResponse(false);
@@ -64,24 +56,34 @@ const ChatCard = ({ onClose }: ChatCardProps) => {
         // First chunk has arrived
         setHasStartedResponse(true);
 
-        // Append each Gemini chunk to the bot message
-        setMessages((prev) =>
-          prev.map((msg) =>
+        // Create bot message on first chunk
+        setMessages((prev) => {
+          const botMessageExists = prev.some((msg) => msg.id === botId);
+
+          if (!botMessageExists) {
+            return [
+              ...prev,
+              {
+                id: botId,
+                text: chunk,
+                sender: "bot",
+              },
+            ];
+          }
+
+          // Append subsequent chunks
+          return prev.map((msg) =>
             msg.id === botId
               ? {
                   ...msg,
                   text: msg.text + chunk,
                 }
               : msg,
-          ),
-        );
+          );
+        });
       });
     } catch (error) {
       console.error("Chat error:", error);
-
-      // Remove empty bot message if request failed
-      setMessages((prev) => prev.filter((msg) => msg.id !== botId));
-
       setError("Couldn't send that — try again.");
     } finally {
       setIsTyping(false);
