@@ -14,12 +14,12 @@ const Footer = () => {
   const linkedinLink = import.meta.env.VITE_LINKDIN_LINK;
   const githubLink = import.meta.env.VITE_GITHUB_LINK;
   return (
-    <footer className="bg-[#181823] text-white mt-40 px-8 md:px-16 lg:px-24 py-14">
+    <footer className="bg-[#181823] text-white mt-28 sm:mt-36 md:mt-40 px-5 sm:px-8 md:px-16 lg:px-24 py-10 sm:py-14">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {/* Brand */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               Ashir<span className="text-[#00FFFF]">.</span>D
             </h2>
@@ -99,8 +99,8 @@ const Footer = () => {
               </p>
 
               <p
-                onClick={() => scrollToSection("projects")}
-                className="text-gray-300 hover:text-[#00FFFF] transition-colors duration-300"
+                onClick={() => scrollToSection("project")}
+                className="text-gray-300 hover:text-[#00FFFF] transition-colors duration-300 cursor-pointer"
               >
                 Projects
               </p>
