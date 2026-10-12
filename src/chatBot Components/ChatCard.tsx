@@ -91,7 +91,7 @@ const ChatCard = ({ onClose }: ChatCardProps) => {
   };
 
   return (
-    <div className="fixed bottom-24 right-4 z-50 w-80 h-[28rem] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden">
+    <div className="fixed bottom-20 sm:bottom-24 right-2 sm:right-4 z-50 w-[calc(100vw-1rem)] sm:w-80 max-w-sm h-[26rem] sm:h-[28rem] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
         <h2 className="font-medium text-black">AI Assistant</h2>

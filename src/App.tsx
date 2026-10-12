@@ -1,4 +1,4 @@
-import Aboutme from "./Sections/Aboutme";
+// import Aboutme from "./Sections/Aboutme";
 import Experience from "./Sections/Experience";
 import Footer from "./Sections/Footer";
 import Input from "./common/Input";
@@ -7,19 +7,21 @@ import Project from "./Sections/Project";
 import Skills from "./Sections/Skills";
 import { Analytics } from "@vercel/analytics/react";
 import ChatBot from "./Sections/ChatBot";
+import Navbar from "./Sections/Navbar";
 
 function App() {
   return (
     <>
+      <Navbar />
       <div id="intro">
         <Intro />
       </div>
       <div id="experience">
         <Experience />
       </div>
-      <div id="aboutme">
+      {/* <div id="aboutme">
         <Aboutme />
-      </div>
+      </div> */}
       <div id="skills">
         <Skills />
       </div>
