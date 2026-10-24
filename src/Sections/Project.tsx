@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
-// import Nlogo from "../assets/images/N logo.png";
-import Spotifylogo from "../assets/images/Spotify logo.png";
-// import Kfclogo from "../assets/images/Kfc logo.png";
+// import Nlogo from "../assets/images/N-logo.png";
+import Spotifylogo from "../assets/images/Spotify-logo.png";
+// import Kfclogo from "../assets/images/Kfc-logo.png";
 import FitLablogo from "../assets/images/fitlab_logo_v3.png";
 import ComputerizedLogo from "../assets/images/computerized_logo_v4.png";
 import QalbSynclogo from "../assets/images/qalbsync-logo.png";

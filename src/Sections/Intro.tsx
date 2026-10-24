@@ -1,4 +1,4 @@
-import Protfolioimg from "../assets/images/Protfolio img.jpeg";
+import Protfolioimg from "../assets/images/Protfolio-img.jpeg";
 import resume from "../assets/resume/Resume.pdf";
 import AOS from "aos";
 import "aos/dist/aos.css";
