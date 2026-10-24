@@ -162,8 +162,8 @@ const Skills = () => {
                   className={`
                     ${isHiddenOnSmall ? "hidden sm:flex" : "flex"}
                     group relative flex-col items-center justify-center p-5 sm:p-6
-                    rounded-2xl bg-[#0c0d16]/80 border border-white/[0.08]
-                    backdrop-blur-md cursor-pointer select-none
+                    rounded-2xl bg-white/[0.03] border border-white/[0.08]
+                    backdrop-blur-sm cursor-pointer select-none
                     transition-all duration-300 ease-out
                     hover:-translate-y-2 hover:border-[var(--glow-color)]/60
                     hover:shadow-[0_12px_30px_-5px_var(--glow-color)]

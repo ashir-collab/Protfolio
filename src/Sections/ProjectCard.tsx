@@ -35,7 +35,7 @@ const ProjectCard = ({
         ${height} ${margin}
         CardContainer group relative flex flex-col w-full h-full
         rounded-2xl overflow-hidden
-        bg-[#0c0d15] border border-white/[0.08]
+        bg-white/3 border border-white/[0.08]
         transition-all duration-500 ease-out
         hover:border-white/25 hover:-translate-y-2
         hover:shadow-[0_24px_40px_-18px_rgba(0,0,0,0.95)]
