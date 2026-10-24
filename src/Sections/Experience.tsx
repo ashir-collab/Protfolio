@@ -43,7 +43,6 @@ const experiences: ExperienceItem[] = [
   },
 ];
 
-// Interactive Particle Burst Canvas (matching computerized.ai)
 function ParticleCanvas({
   trigger,
   origin = { x: 0.18, y: 0.5 },
@@ -150,7 +149,6 @@ const Experience = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const isFirstMount = useRef(true);
 
-  // ScrollTrigger Setup mirroring computerized.ai
   useLayoutEffect(() => {
     const section = sectionRef.current;
     const pin = pinRef.current;
@@ -179,7 +177,6 @@ const Experience = () => {
     return () => ctx.revert();
   }, []);
 
-  // Animation on activeIndex change (ClipPath & Scale wipe like computerized.ai)
   useEffect(() => {
     if (isFirstMount.current) {
       isFirstMount.current = false;
@@ -240,7 +237,7 @@ const Experience = () => {
         <div className="container relative flex flex-1 flex-col justify-center py-16 sm:py-20 z-10">
 
           <div className="max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400 sm:text-sm">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-sm">
               WORK EXPERIENCE
             </span>
             <h2 className="mt-2 text-2xl font-bold text-white sm:mt-3 sm:text-4xl lg:text-5xl">
@@ -259,7 +256,7 @@ const Experience = () => {
             <div className="relative h-[6rem] w-full sm:h-[12rem] lg:h-[18rem] lg:w-[26rem] flex items-center select-none z-10">
               <span
                 ref={numberRef}
-                className="select-none bg-gradient-to-br from-sky-200 via-sky-300 to-sky-400/40 bg-clip-text font-black text-transparent text-[6rem] sm:text-[11rem] lg:text-[16rem] leading-none tracking-tight will-change-transform"
+                className="select-none bg-gradient-to-b from-white via-zinc-300 to-zinc-600/30 bg-clip-text font-black text-transparent text-[6rem] sm:text-[11rem] lg:text-[16rem] leading-none tracking-tight will-change-transform"
               >
                 {activeExp.number}
               </span>
@@ -267,7 +264,7 @@ const Experience = () => {
 
             <div className="relative min-h-[14rem] sm:min-h-[12rem] flex flex-col justify-center z-10">
               <div ref={contentRef} className="flex flex-col">
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400 sm:text-sm">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-sm">
                   EXPERIENCE {activeExp.number}
                 </span>
                 <h3 className="mt-2 text-3xl font-bold leading-tight sm:mt-3 sm:text-4xl lg:text-5xl">
@@ -292,16 +289,15 @@ const Experience = () => {
             </div>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-3 sm:justify-start z-10">
+          <div className="z-10 mt-8 flex items-center justify-center gap-2 sm:justify-start">
             {experiences.map((exp, i) => (
-              <div key={exp.number} className="flex items-center gap-2">
-                <span
-                  className={`h-1.5 rounded-full transition-all duration-500 ${i === activeIndex
-                    ? "w-10 bg-gradient-to-r from-sky-400 to-[#00FFFF] shadow-[0_0_10px_#00ffff]"
+              <span
+                key={exp.number}
+                className={`h-1.5 rounded-full transition-all duration-500 ${i === activeIndex
+                    ? "w-10 bg-gradient-to-r from-zinc-400 to-white"
                     : "w-4 bg-white/20"
-                    }`}
-                />
-              </div>
+                  }`}
+              />
             ))}
           </div>
         </div>

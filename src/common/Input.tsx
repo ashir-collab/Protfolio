@@ -124,7 +124,7 @@ const Input = () => {
             <button
               type="submit"
               disabled={isBusy}
-              className="bg-[#2445b8] hover:bg-[#3156d3] text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl text-sm sm:text-base cursor-pointer transition-all duration-300 hover:shadow-[0_0_20px_rgba(36,69,184,0.5)] disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+              className="mt-2 cursor-pointer rounded-xl bg-zinc-100 px-6 py-3.5 text-sm font-bold text-zinc-900 transition-all duration-300 hover:bg-white active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-zinc-100 disabled:active:scale-100 sm:py-4 sm:text-base"
             >
               {isBusy ? "SENDING..." : "LET'S GET STARTED"}
             </button>

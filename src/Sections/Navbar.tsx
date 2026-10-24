@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import logoImg from "../assets/logo/logo.png";
 
+const links = [
+  { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "project", label: "Projects" },
+];
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("intro");
@@ -8,11 +14,7 @@ const Navbar = () => {
   const progressLineRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    section?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMobileMenuOpen(false);
   };
 
@@ -24,34 +26,24 @@ const Navbar = () => {
       const isScrolled = scrollY > 30;
       setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
 
-      // Direct GPU transform update (scaleX) with zero layout reflow and zero lag
-      const totalDocHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const totalDocHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress =
-        totalDocHeight > 0
-          ? Math.min(1, Math.max(0, scrollY / totalDocHeight))
-          : 0;
+        totalDocHeight > 0 ? Math.min(1, Math.max(0, scrollY / totalDocHeight)) : 0;
 
       if (progressLineRef.current) {
         progressLineRef.current.style.transform = `scaleX(${progress})`;
       }
 
-      // Active section detection with state change check to prevent unnecessary re-renders
       const sections = ["intro", "experience", "skills", "project", "input"];
       let matchedSection = "intro";
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 160) {
-            matchedSection = sections[i];
-            break;
-          }
+        if (el && el.getBoundingClientRect().top <= 160) {
+          matchedSection = sections[i];
+          break;
         }
       }
-      setActiveSection((prev) =>
-        prev !== matchedSection ? matchedSection : prev
-      );
+      setActiveSection((prev) => (prev !== matchedSection ? matchedSection : prev));
     };
 
     const handleScroll = () => {
@@ -74,20 +66,19 @@ const Navbar = () => {
   return (
     <header
       className={`
-        fixed top-0 left-0 w-full z-50 text-white
+        fixed top-0 left-0 z-50 w-full text-white
         transition-all duration-300 ease-out
         ${scrolled
-          ? "bg-[#08090e]/80 backdrop-blur-xl backdrop-saturate-150 border-b border-cyan-500/20 shadow-[0_12px_40px_-5px_rgba(0,0,0,0.85),0_1px_15px_rgba(0,255,255,0.08)]"
-          : "bg-transparent border-b border-transparent"
+          ? "border-b border-white/10 bg-[#111215]/75 backdrop-blur-xl backdrop-saturate-150 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)]"
+          : "border-b border-transparent bg-transparent"
         }
       `}
     >
-      {/* Top subtle highlight reflection on glass */}
+      {/* Top glass highlight */}
       {scrolled && (
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
       )}
 
-      {/* Main navigation container */}
       <div
         className={`
           mx-auto flex items-center justify-between
@@ -96,103 +87,79 @@ const Navbar = () => {
           ${scrolled ? "py-2.5 sm:py-3" : "py-5 sm:py-6"}
         `}
       >
-        {/* Logo with micro-scaling */}
+        {/* Logo */}
         <div
           onClick={() => scrollToSection("intro")}
-          className="group flex items-center gap-3 cursor-pointer select-none"
+          className="group flex cursor-pointer select-none items-center gap-3"
         >
           <div
             className={`
-              relative rounded-xl overflow-hidden transition-all duration-300 ease-out
+              relative overflow-hidden rounded-xl ring-1 ring-white/15
+              transition-all duration-300 ease-out group-hover:ring-white/40
               ${scrolled
-                ? "w-9 h-9 sm:w-10 sm:h-10 ring-1 ring-cyan-400/40 shadow-[0_0_15px_rgba(0,255,255,0.25)] group-hover:ring-cyan-300 group-hover:shadow-[0_0_22px_rgba(0,255,255,0.45)] scale-90 sm:scale-95"
-                : "w-11 h-11 sm:w-12 sm:h-12 ring-1 ring-white/10 group-hover:ring-cyan-400/50 group-hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] scale-100"
+                ? "h-9 w-9 scale-95 sm:h-10 sm:w-10"
+                : "h-11 w-11 sm:h-12 sm:w-12"
               }
             `}
           >
             <img
               src={logoImg}
               alt="Logo"
-              className="w-full h-full object-cover bg-black transition-transform duration-300 group-hover:scale-105"
+              className="h-full w-full bg-black object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
 
           <span
             className={`
-              font-bold tracking-tight transition-all duration-300
+              font-bold tracking-tight text-zinc-100 transition-all duration-300
               ${scrolled ? "text-xl max-sm:text-lg" : "text-2xl max-md:text-xl max-sm:text-lg"}
-              group-hover:text-[#00FFFF]
-              group-hover:[text-shadow:0_0_15px_#00FFFF]
             `}
           >
-            Ashir<span className="text-cyan-400">.</span>
+            Ashir<span className="text-white/50">.</span>
           </span>
         </div>
 
-        {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex items-center gap-8 lg:gap-10">
-          <li
-            onClick={() => scrollToSection("experience")}
-            className={`nav-link text-sm lg:text-base ${activeSection === "experience" ? "active" : ""
-              }`}
-          >
-            Experience
-          </li>
+        {/* Desktop links */}
+        <ul className="hidden items-center gap-8 md:flex lg:gap-10">
+          {links.map(({ id, label }) => (
+            <li
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className={`nav-link text-sm lg:text-base ${activeSection === id ? "active" : ""
+                }`}
+            >
+              {label}
+            </li>
+          ))}
 
-          <li
-            onClick={() => scrollToSection("skills")}
-            className={`nav-link text-sm lg:text-base ${activeSection === "skills" ? "active" : ""
-              }`}
-          >
-            Skills
-          </li>
-
-          <li
-            onClick={() => scrollToSection("project")}
-            className={`nav-link text-sm lg:text-base ${activeSection === "project" ? "active" : ""
-              }`}
-          >
-            Projects
-          </li>
-
-          {/* Contact Button */}
           <li>
             <button
               onClick={() => scrollToSection("input")}
               className={`
-                relative inline-flex items-center justify-center font-semibold rounded-full
-                cursor-pointer overflow-hidden transition-all duration-300
-                ${scrolled
-                  ? "px-5 py-2 text-sm bg-gradient-to-r from-[#1d4ed8] to-[#2563eb] text-white border border-cyan-400/40 shadow-[0_0_18px_rgba(0,255,255,0.25)] hover:border-cyan-300 hover:shadow-[0_0_24px_rgba(0,255,255,0.5)] hover:text-[#00FFFF] hover:-translate-y-0.5"
-                  : "px-6 py-2.5 text-base bg-[#2445b8] text-white hover:bg-[#3156d3] hover:text-[#00FFFF] hover:shadow-[0_0_25px_rgba(0,255,255,0.3)] hover:-translate-y-0.5"
-                }
+                inline-flex cursor-pointer items-center justify-center rounded-full
+                bg-zinc-100 font-semibold text-zinc-900
+                transition-all duration-300 hover:bg-white active:scale-[0.98]
+                ${scrolled ? "px-5 py-2 text-sm" : "px-6 py-2.5 text-base"}
               `}
             >
-              <span className="relative flex h-2 w-2 mr-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+              <span className="relative mr-2 flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
               Contact
             </button>
           </li>
         </ul>
 
-        {/* Mobile menu toggle & quick contact */}
-        <div className="flex md:hidden items-center gap-2.5">
+        {/* Mobile controls */}
+        <div className="flex items-center gap-2.5 md:hidden">
           <button
             onClick={() => scrollToSection("input")}
-            className={`
-              inline-flex items-center px-3.5 py-1.5 text-xs font-semibold rounded-full
-              transition-all duration-300 cursor-pointer
-              ${scrolled
-                ? "bg-gradient-to-r from-[#1d4ed8] to-[#2563eb] border border-cyan-400/30 text-white shadow-[0_0_12px_rgba(0,255,255,0.2)]"
-                : "bg-[#2445b8] text-white"
-              }
-            `}
+            className="inline-flex cursor-pointer items-center rounded-full bg-zinc-100 px-3.5 py-1.5 text-xs font-semibold text-zinc-900 transition hover:bg-white"
           >
-            <span className="relative flex h-1.5 w-1.5 mr-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
+            <span className="relative mr-1.5 flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
             </span>
             Contact
           </button>
@@ -200,83 +167,43 @@ const Navbar = () => {
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Toggle Navigation Menu"
-            className="p-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="cursor-pointer rounded-lg p-1.5 text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
           >
-            <svg
-              className="w-6 h-6 transition-transform duration-200"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {mobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Dynamic bottom scroll progress bar indicator (GPU-accelerated scaleX) */}
+      {/* Scroll progress */}
       <div
         ref={progressLineRef}
-        className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-600 via-cyan-400 to-[#00FFFF] shadow-[0_0_12px_#00FFFF] origin-left pointer-events-none transition-opacity duration-300 ease-out will-change-transform ${
-          scrolled ? "opacity-100" : "opacity-0"
-        }`}
+        className={`pointer-events-none absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-white/10 via-white/50 to-white will-change-transform transition-opacity duration-300 ease-out ${scrolled ? "opacity-100" : "opacity-0"
+          }`}
         style={{ transform: "scaleX(0)" }}
       />
 
-      {/* Mobile Drawer Dropdown */}
+      {/* Mobile drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-6 pt-3 pb-6 border-b border-cyan-500/20 bg-[#08090e]/95 backdrop-blur-2xl shadow-[0_20px_35px_rgba(0,0,0,0.9)] animate-in fade-in duration-200">
-          <ul className="flex flex-col gap-3.5 text-center">
-            <li
-              onClick={() => scrollToSection("experience")}
-              className={`py-2 text-base cursor-pointer transition-colors ${activeSection === "experience"
-                  ? "text-[#00ffff] font-semibold"
-                  : "text-gray-300 hover:text-[#00ffff]"
-                }`}
-            >
-              Experience
-            </li>
-            <li
-              onClick={() => scrollToSection("skills")}
-              className={`py-2 text-base cursor-pointer transition-colors ${activeSection === "skills"
-                  ? "text-[#00ffff] font-semibold"
-                  : "text-gray-300 hover:text-[#00ffff]"
-                }`}
-            >
-              Skills
-            </li>
-            <li
-              onClick={() => scrollToSection("project")}
-              className={`py-2 text-base cursor-pointer transition-colors ${activeSection === "project"
-                  ? "text-[#00ffff] font-semibold"
-                  : "text-gray-300 hover:text-[#00ffff]"
-                }`}
-            >
-              Projects
-            </li>
-            <li
-              onClick={() => scrollToSection("input")}
-              className={`py-2 text-base cursor-pointer transition-colors ${activeSection === "input"
-                  ? "text-[#00ffff] font-semibold"
-                  : "text-gray-300 hover:text-[#00ffff]"
-                }`}
-            >
-              Contact
-            </li>
+        <div className="border-b border-white/10 bg-[#111215]/95 px-6 pb-6 pt-3 shadow-[0_20px_35px_rgba(0,0,0,0.9)] backdrop-blur-2xl md:hidden">
+          <ul className="flex flex-col gap-1 text-center">
+            {[...links, { id: "input", label: "Contact" }].map(({ id, label }) => (
+              <li
+                key={id}
+                onClick={() => scrollToSection(id)}
+                className={`cursor-pointer rounded-lg py-3 text-base transition-colors ${activeSection === id
+                    ? "bg-white/[0.06] font-semibold text-white"
+                    : "text-zinc-400 hover:bg-white/[0.04] hover:text-white"
+                  }`}
+              >
+                {label}
+              </li>
+            ))}
           </ul>
         </div>
       )}

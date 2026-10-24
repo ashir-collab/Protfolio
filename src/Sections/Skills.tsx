@@ -95,7 +95,7 @@ const Skills = () => {
         ========================================================= */}
         <div className="lg:col-span-5 flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
               SKILLSET & EXPERTISE
             </span>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
@@ -109,14 +109,18 @@ const Skills = () => {
 
           {/* Quick Highlight Stats Pills */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-2">
-            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm">
-              <div className="text-2xl sm:text-3xl font-extrabold text-cyan-400">16+</div>
-              <div className="text-xs text-gray-400 mt-0.5">Core Technologies</div>
+            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+              <div className="bg-gradient-to-b from-white via-zinc-300 to-zinc-600/60 bg-clip-text text-2xl font-extrabold text-transparent sm:text-3xl">
+                16+
+              </div>
+              <div className="text-xs text-zinc-500 mt-0.5">Core Technologies</div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#38bdf8]">100%</div>
-              <div className="text-xs text-gray-400 mt-0.5">Modern Standards</div>
+            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+              <div className="bg-gradient-to-b from-white via-zinc-300 to-zinc-600/60 bg-clip-text text-2xl font-extrabold text-transparent sm:text-3xl">
+                100%
+              </div>
+              <div className="text-xs text-zinc-500 mt-0.5">Modern Standards</div>
             </div>
           </div>
 
@@ -126,14 +130,14 @@ const Skills = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
+                aria-pressed={selectedCategory === cat}
                 className={`
-                  px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 cursor-pointer
-                  ${
-                    selectedCategory === cat
-                      ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-[0_0_15px_rgba(0,255,255,0.3)] scale-105"
-                      : "bg-white/[0.05] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.09]"
+        cursor-pointer rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-300
+        ${selectedCategory === cat
+                    ? "border border-zinc-100 bg-zinc-100 text-zinc-900"
+                    : "border border-white/10 bg-white/[0.05] text-zinc-400 hover:border-white/20 hover:bg-white/[0.09] hover:text-white"
                   }
-                `}
+      `}
               >
                 {cat}
                 {cat === "All"
@@ -213,27 +217,23 @@ const Skills = () => {
 
           {/* Mobile "Load More" / "Show Less" Button */}
           {filteredSkills.length > 8 && (
-            <div className="sm:hidden flex justify-center mt-6">
+            <div className="mt-6 flex justify-center sm:hidden">
               <button
                 type="button"
                 onClick={handleToggleExpand}
+                aria-expanded={showAllMobile}
                 className="
-                  group relative inline-flex items-center gap-2.5 px-6 py-2.5
-                  rounded-full text-xs font-semibold tracking-wide
-                  bg-white/[0.04] hover:bg-white/[0.08]
-                  border border-cyan-500/30 hover:border-cyan-400/70
-                  text-cyan-300 hover:text-white
-                  shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_25px_rgba(6,182,212,0.35)]
-                  backdrop-blur-md transition-all duration-300 ease-out
-                  active:scale-95 cursor-pointer
-                "
+        group inline-flex cursor-pointer items-center gap-2.5 rounded-full
+        bg-zinc-100 px-6 py-2.5 text-xs font-semibold tracking-wide text-zinc-900
+        transition-all duration-300 ease-out hover:bg-white active:scale-95
+      "
               >
                 <span>{showAllMobile ? "Show Less" : "Load More"}</span>
-                <span className="p-1 rounded-full bg-cyan-500/10 group-hover:bg-cyan-500/20 text-cyan-400 transition-colors duration-300">
+                <span className="rounded-full bg-zinc-900/10 p-1 transition-colors duration-300 group-hover:bg-zinc-900/15">
                   {showAllMobile ? (
-                    <FaChevronUp className="w-3 h-3 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                    <FaChevronUp className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5" />
                   ) : (
-                    <FaChevronDown className="w-3 h-3 transition-transform duration-300 group-hover:translate-y-0.5" />
+                    <FaChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:translate-y-0.5" />
                   )}
                 </span>
               </button>

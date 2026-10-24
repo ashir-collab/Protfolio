@@ -29,7 +29,7 @@ const ChatbotInput = ({ onSend, disabled }: ChatbotInputProps) => {
       <button
         onClick={handleSubmit}
         disabled={!value.trim()}
-        className="bg-black text-white rounded-full p-2 disabled:opacity-30 hover:scale-105 transition-transform"
+        className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white shadow-md rounded-full p-2 disabled:opacity-30 hover:scale-105 transition-all"
       >
         <IoSend size={14} />
       </button>
